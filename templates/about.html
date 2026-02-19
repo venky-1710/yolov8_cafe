@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>About — Cafe Occupancy Monitor</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="/static/css/style.css" />
+    <link rel="stylesheet" href="/static/css/pages.css" />
+</head>
+
+<body>
+
+    <!-- NAV -->
+    <header class="header">
+        <div class="header-left">
+            <div class="logo-icon">☕</div>
+            <div>
+                <h1 class="cafe-name">Cafe Occupancy Monitor</h1>
+                <p class="cafe-subtitle">AI-Powered Real-Time Detection</p>
+            </div>
+        </div>
+        <nav class="main-nav">
+            <a href="/" class="nav-link">🏠 Dashboard</a>
+            <a href="/about" class="nav-link active">ℹ️ About</a>
+            <a href="/team" class="nav-link">👥 Team</a>
+            <a href="/contact" class="nav-link">📬 Contact</a>
+        </nav>
+    </header>
+
+    <!-- HERO -->
+    <section class="page-hero">
+        <div class="hero-badge">About the Project</div>
+        <h2 class="hero-title">Real-Time Cafe Occupancy<br /><span class="gradient-text">Monitoring System</span></h2>
+        <p class="hero-sub">An intelligent, AI-driven solution that keeps your cafe safe, efficient, and welcoming.</p>
+    </section>
+
+    <!-- CONTENT -->
+    <div class="page-container">
+
+        <!-- What is it -->
+        <div class="about-grid">
+            <div class="about-card glass-card">
+                <div class="about-icon">🎯</div>
+                <h3>Objective</h3>
+                <p>Detect and count people inside a cafe in real-time using deep learning, display live occupancy stats,
+                    and trigger alerts when capacity thresholds are exceeded — all from a single camera feed.</p>
+            </div>
+            <div class="about-card glass-card">
+                <div class="about-icon">🧠</div>
+                <h3>AI Technology</h3>
+                <p>Powered by <strong>YOLOv8</strong> (You Only Look Once), the state-of-the-art object detection model
+                    by Ultralytics. Trained on millions of images, it detects people with high accuracy in real-time.
+                </p>
+            </div>
+            <div class="about-card glass-card">
+                <div class="about-icon">⚡</div>
+                <h3>Performance</h3>
+                <p>Optimized for CPU-based inference with frame skipping, 320px inference resolution, and the nano model
+                    variant — delivering smooth real-time detection without requiring a GPU.</p>
+            </div>
+            <div class="about-card glass-card">
+                <div class="about-icon">📊</div>
+                <h3>Live Dashboard</h3>
+                <p>A modern glassmorphism dashboard shows live video, KPI cards, an animated circular occupancy meter,
+                    and a real-time trend chart — all updating every 2 seconds automatically.</p>
+            </div>
+        </div>
+
+        <!-- Tech Stack -->
+        <div class="section-title">🛠️ Technology Stack</div>
+        <div class="tech-stack glass-card">
+            <div class="tech-item">
+                <span class="tech-icon">🐍</span>
+                <span class="tech-name">Python 3.10+</span>
+                <span class="tech-role">Core Language</span>
+            </div>
+            <div class="tech-divider"></div>
+            <div class="tech-item">
+                <span class="tech-icon">🔥</span>
+                <span class="tech-name">Flask</span>
+                <span class="tech-role">Web Framework</span>
+            </div>
+            <div class="tech-divider"></div>
+            <div class="tech-item">
+                <span class="tech-icon">👁️</span>
+                <span class="tech-name">YOLOv8n</span>
+                <span class="tech-role">Object Detection</span>
+            </div>
+            <div class="tech-divider"></div>
+            <div class="tech-item">
+                <span class="tech-icon">📷</span>
+                <span class="tech-name">OpenCV</span>
+                <span class="tech-role">Video Processing</span>
+            </div>
+            <div class="tech-divider"></div>
+            <div class="tech-item">
+                <span class="tech-icon">📈</span>
+                <span class="tech-name">Chart.js</span>
+                <span class="tech-role">Data Visualization</span>
+            </div>
+            <div class="tech-divider"></div>
+            <div class="tech-item">
+                <span class="tech-icon">🎨</span>
+                <span class="tech-name">Glassmorphism UI</span>
+                <span class="tech-role">Frontend Design</span>
+            </div>
+        </div>
+
+        <!-- How it works -->
+        <div class="section-title">⚙️ How It Works</div>
+        <div class="steps-list glass-card">
+            <div class="step-item">
+                <div class="step-num">01</div>
+                <div class="step-body">
+                    <div class="step-title">Video Capture</div>
+                    <div class="step-desc">OpenCV reads frames from webcam, RTSP stream, or uploaded video file in a
+                        background thread.</div>
+                </div>
+            </div>
+            <div class="step-item">
+                <div class="step-num">02</div>
+                <div class="step-body">
+                    <div class="step-title">AI Detection</div>
+                    <div class="step-desc">YOLOv8n runs inference on every 2nd frame at 320px resolution, detecting only
+                        the "person" class with 45% confidence threshold.</div>
+                </div>
+            </div>
+            <div class="step-item">
+                <div class="step-num">03</div>
+                <div class="step-body">
+                    <div class="step-title">Counting & Annotation</div>
+                    <div class="step-desc">Detected bounding boxes are drawn on the frame with confidence scores. The
+                        count is compared against max capacity to determine status.</div>
+                </div>
+            </div>
+            <div class="step-item">
+                <div class="step-num">04</div>
+                <div class="step-body">
+                    <div class="step-title">REST API</div>
+                    <div class="step-desc">Flask serves the annotated video as JPEG snapshots and exposes JSON endpoints
+                        for occupancy data, history, and settings.</div>
+                </div>
+            </div>
+            <div class="step-item">
+                <div class="step-num">05</div>
+                <div class="step-body">
+                    <div class="step-title">Live Dashboard</div>
+                    <div class="step-desc">JavaScript polls the API every 2 seconds and renders animated KPI cards,
+                        circular meter, and trend chart in the browser.</div>
+                </div>
+            </div>
+        </div>
+
+    </div><!-- /page-container -->
+
+    <footer class="page-footer">
+        <p>© 2026 Cafe Occupancy Monitor · Built with ❤️ using YOLOv8 + Flask</p>
+    </footer>
+
+</body>
+
+</html>

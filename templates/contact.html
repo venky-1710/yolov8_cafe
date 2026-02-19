@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contact — Cafe Occupancy Monitor</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="/static/css/style.css" />
+    <link rel="stylesheet" href="/static/css/pages.css" />
+</head>
+
+<body>
+
+    <!-- NAV -->
+    <header class="header">
+        <div class="header-left">
+            <div class="logo-icon">☕</div>
+            <div>
+                <h1 class="cafe-name">Cafe Occupancy Monitor</h1>
+                <p class="cafe-subtitle">AI-Powered Real-Time Detection</p>
+            </div>
+        </div>
+        <nav class="main-nav">
+            <a href="/" class="nav-link">🏠 Dashboard</a>
+            <a href="/about" class="nav-link">ℹ️ About</a>
+            <a href="/team" class="nav-link">👥 Team</a>
+            <a href="/contact" class="nav-link active">📬 Contact</a>
+        </nav>
+    </header>
+
+    <!-- HERO -->
+    <section class="page-hero">
+        <div class="hero-badge">Get In Touch</div>
+        <h2 class="hero-title">We'd Love to<br /><span class="gradient-text">Hear From You</span></h2>
+        <p class="hero-sub">Questions, feedback, or collaboration ideas? Reach out to the team.</p>
+    </section>
+
+    <div class="page-container">
+        <div class="contact-layout">
+
+            <!-- CONTACT FORM -->
+            <div class="contact-form-wrap glass-card">
+                <h3 class="form-title">Send a Message</h3>
+                <form class="contact-form" id="contactForm" onsubmit="submitForm(event)">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">Your Name</label>
+                            <input type="text" class="form-input" id="fname" placeholder="John Doe" required />
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Email Address</label>
+                            <input type="email" class="form-input" id="femail" placeholder="john@example.com"
+                                required />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Subject</label>
+                        <input type="text" class="form-input" id="fsubject"
+                            placeholder="e.g. Bug report / Feature request / Collaboration" />
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Message</label>
+                        <textarea class="form-input form-textarea" id="fmessage" rows="5"
+                            placeholder="Write your message here…" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-full">
+                        <span id="submitLabel">📨 Send Message</span>
+                    </button>
+                    <div class="form-success" id="formSuccess" style="display:none">
+                        ✅ Message sent! We'll get back to you within 24 hours.
+                    </div>
+                </form>
+            </div>
+
+            <!-- CONTACT INFO -->
+            <div class="contact-info-col">
+
+                <div class="contact-info-card glass-card">
+                    <div class="ci-icon">📧</div>
+                    <div>
+                        <div class="ci-label">Email</div>
+                        <a href="mailto:team@cafeoccupancy.ai" class="ci-value">team@cafeoccupancy.ai</a>
+                    </div>
+                </div>
+
+                <div class="contact-info-card glass-card">
+                    <div class="ci-icon">🐙</div>
+                    <div>
+                        <div class="ci-label">GitHub Repository</div>
+                        <a href="#" class="ci-value">github.com/cafe-occupancy</a>
+                    </div>
+                </div>
+
+                <div class="contact-info-card glass-card">
+                    <div class="ci-icon">💼</div>
+                    <div>
+                        <div class="ci-label">LinkedIn</div>
+                        <a href="#" class="ci-value">linkedin.com/company/cafe-occupancy</a>
+                    </div>
+                </div>
+
+                <div class="contact-info-card glass-card">
+                    <div class="ci-icon">📍</div>
+                    <div>
+                        <div class="ci-label">Location</div>
+                        <span class="ci-value">India 🇮🇳</span>
+                    </div>
+                </div>
+
+                <!-- Quick links -->
+                <div class="quick-links glass-card">
+                    <div class="ql-title">Quick Links</div>
+                    <a href="/about" class="ql-link">📖 Read About the Project</a>
+                    <a href="/team" class="ql-link">👥 Meet the Team</a>
+                    <a href="/" class="ql-link">📊 Open Dashboard</a>
+                    <a href="https://github.com/ultralytics/ultralytics" target="_blank" class="ql-link">🔗 YOLOv8
+                        Docs</a>
+                </div>
+
+            </div><!-- /contact-info-col -->
+        </div><!-- /contact-layout -->
+    </div><!-- /page-container -->
+
+    <footer class="page-footer">
+        <p>© 2026 Cafe Occupancy Monitor · Built with ❤️ using YOLOv8 + Flask</p>
+    </footer>
+
+    <script>
+        function submitForm(e) {
+            e.preventDefault();
+            const btn = document.getElementById("submitLabel");
+            btn.textContent = "Sending…";
+            setTimeout(() => {
+                document.getElementById("contactForm").reset();
+                document.getElementById("formSuccess").style.display = "block";
+                btn.textContent = "📨 Send Message";
+            }, 1200);
+        }
+    </script>
+
+</body>
+
+</html>

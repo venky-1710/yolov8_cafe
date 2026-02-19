@@ -1,0 +1,62 @@
+# ─────────────────────────────────────────────────────────────
+# cafe.yaml — Custom Dataset Configuration for YOLOv8 Training
+# ─────────────────────────────────────────────────────────────
+#
+# FOLDER STRUCTURE EXPECTED:
+#
+#   data/
+#   ├── cafe.yaml          ← this file
+#   ├── images/
+#   │   ├── train/         ← training images (.jpg / .png)
+#   │   └── val/           ← validation images
+#   └── labels/
+#       ├── train/         ← YOLO format .txt labels
+#       └── val/
+#
+# LABEL FORMAT (one line per object):
+#   <class_id> <x_center> <y_center> <width> <height>
+#   All values normalized 0–1 relative to image size.
+#   Example (one person):
+#     0 0.512 0.430 0.120 0.380
+#
+# HOW TO ANNOTATE:
+#   Use LabelImg (free): https://github.com/HumanSignal/labelImg
+#   Or Roboflow (online): https://roboflow.com
+#   Select "YOLO" export format.
+#
+# ─────────────────────────────────────────────────────────────
+
+# Root path (relative to where you run train.py)
+path: ./data
+
+# Relative paths to image directories
+train: images/train
+val:   images/val
+# test: images/test   # optional
+
+# Number of classes
+nc: 1
+
+# Class names (must match label file class IDs)
+names:
+  0: person
+
+# ─────────────────────────────────────────────────────────────
+# RECOMMENDED FREE DATASETS (person detection):
+#
+# 1. CrowdHuman (crowd scenes, best for cafes):
+#    https://www.crowdhuman.org/
+#
+# 2. MOT17 / MOT20 (multi-object tracking benchmark):
+#    https://motchallenge.net/
+#
+# 3. COCO (person class only, 118k images):
+#    https://cocodataset.org/
+#    Filter with: python -c "from ultralytics.data.utils import autosplit; ..."
+#
+# 4. Roboflow Universe — search "people detection":
+#    https://universe.roboflow.com/
+#
+# After downloading, convert to YOLO format and update
+# the paths above accordingly.
+# ─────────────────────────────────────────────────────────────

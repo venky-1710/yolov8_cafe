@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cafe Occupancy Monitor</title>
+  <meta name="description" content="Real-time cafe occupancy monitoring powered by YOLOv8 AI detection" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="/static/css/style.css" />
+  <link rel="stylesheet" href="/static/css/pages.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+</head>
+
+<body>
+
+  <!-- ── HEADER ─────────────────────────────────────────── -->
+  <header class="header">
+    <div class="header-left">
+      <div class="logo-icon">☕</div>
+      <div>
+        <h1 class="cafe-name">Cafe Occupancy Monitor</h1>
+        <p class="cafe-subtitle">AI-Powered Real-Time Detection</p>
+      </div>
+    </div>
+    <div class="header-right">
+      <nav class="main-nav">
+        <a href="/" class="nav-link active">🏠 Dashboard</a>
+        <a href="/about" class="nav-link">ℹ️ About</a>
+        <a href="/team" class="nav-link">👥 Team</a>
+        <a href="/contact" class="nav-link">📬 Contact</a>
+      </nav>
+      <div class="live-badge" id="liveBadge">
+        <span class="pulse-dot" id="pulseDot"></span>
+        <span id="liveLabel">LIVE</span>
+      </div>
+      <div class="status-chip" id="statusChip">SAFE</div>
+    </div>
+  </header>
+
+  <!-- ── MAIN GRID ──────────────────────────────────────── -->
+  <main class="main-grid">
+
+    <!-- ── VIDEO PANEL ──────────────────────────────────── -->
+    <section class="video-panel glass-card">
+      <div class="panel-header">
+        <span class="panel-title">📹 Live Feed</span>
+        <div class="source-controls">
+          <button class="btn btn-sm" id="btnWebcam" onclick="switchToWebcam()">Webcam</button>
+          <label class="btn btn-sm btn-upload" for="videoUpload">⬆ Upload Video</label>
+          <input type="file" id="videoUpload" accept="video/*" style="display:none" onchange="uploadVideo(this)" />
+        </div>
+      </div>
+
+      <div class="video-wrapper">
+        <!-- Canvas replaces <img> — JS draws frames here, works in all browsers -->
+        <canvas id="videoCanvas"></canvas>
+        <div class="video-overlay-badge" id="countBadge">
+          👤 <span id="overlayCount">0</span> people
+        </div>
+        <div class="upload-progress" id="uploadProgress" style="display:none">
+          <div class="progress-bar-wrap">
+            <div class="progress-bar-fill" id="progressFill"></div>
+          </div>
+          <span id="progressLabel">Uploading…</span>
+        </div>
+        <!-- Shown while stream is loading -->
+        <div class="stream-loading" id="streamLoading">
+          <div class="spinner"></div>
+          <span>Connecting to camera…</span>
+        </div>
+      </div>
+
+      <div class="video-footer">
+        <span id="footerSource">Source: Webcam</span>
+        <span id="footerTime">--:--:--</span>
+      </div>
+    </section>
+
+    <!-- ── RIGHT COLUMN ──────────────────────────────────── -->
+    <div class="right-col">
+
+      <!-- KPI CARDS -->
+      <div class="kpi-grid">
+        <div class="kpi-card glass-card">
+          <div class="kpi-icon">👥</div>
+          <div class="kpi-value" id="kpiCount">0</div>
+          <div class="kpi-label">Current Occupancy</div>
+        </div>
+        <div class="kpi-card glass-card">
+          <div class="kpi-icon">🏠</div>
+          <div class="kpi-value" id="kpiMax">50</div>
+          <div class="kpi-label">Max Capacity</div>
+        </div>
+        <div class="kpi-card glass-card">
+          <div class="kpi-icon">📊</div>
+          <div class="kpi-value" id="kpiPct">0<span class="kpi-unit">%</span></div>
+          <div class="kpi-label">Occupancy Rate</div>
+        </div>
+        <div class="kpi-card glass-card kpi-status-card">
+          <div class="kpi-icon">🚦</div>
+          <div class="kpi-value status-value" id="kpiStatus">SAFE</div>
+          <div class="kpi-label">Status</div>
+        </div>
+      </div>
+
+      <!-- CIRCULAR METER -->
+      <div class="meter-card glass-card">
+        <div class="panel-header">
+          <span class="panel-title">🎯 Occupancy Meter</span>
+          <span class="meter-pct-label" id="meterLabel">0%</span>
+        </div>
+        <div class="meter-container">
+          <svg class="circular-meter" viewBox="0 0 200 200">
+            <defs>
+              <linearGradient id="meterGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" id="gradStop1" stop-color="#00e676" />
+                <stop offset="100%" id="gradStop2" stop-color="#00bcd4" />
+              </linearGradient>
+            </defs>
+            <circle cx="100" cy="100" r="80" class="meter-track" />
+            <circle cx="100" cy="100" r="80" class="meter-progress" id="meterArc" stroke="url(#meterGrad)"
+              stroke-dasharray="502.65" stroke-dashoffset="502.65" />
+          </svg>
+          <div class="meter-center-text">
+            <div class="meter-big" id="meterBig">0%</div>
+            <div class="meter-sub">of capacity</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SETTINGS -->
+      <div class="settings-card glass-card">
+        <div class="panel-header">
+          <span class="panel-title">⚙️ Settings</span>
+        </div>
+        <div class="settings-row">
+          <label class="settings-label">Max Capacity</label>
+          <div class="settings-input-group">
+            <input type="number" id="capacityInput" class="settings-input" value="50" min="1" max="9999" />
+            <button class="btn btn-primary" onclick="updateCapacity()">Update</button>
+          </div>
+        </div>
+        <div class="settings-row">
+          <label class="settings-label">RTSP / Webcam Index</label>
+          <div class="settings-input-group">
+            <input type="text" id="rtspInput" class="settings-input" placeholder="rtsp://... or 0,1,2 for webcam" />
+            <button class="btn btn-primary" onclick="switchSource()">Switch</button>
+          </div>
+        </div>
+        <div id="settingsMsg" class="settings-msg"></div>
+      </div>
+
+    </div><!-- /right-col -->
+
+    <!-- ── CHART ─────────────────────────────────────────── -->
+    <section class="chart-card glass-card">
+      <div class="panel-header">
+        <span class="panel-title">📈 Occupancy Trend</span>
+        <span class="chart-note">Updates every 5 seconds</span>
+      </div>
+      <div class="chart-wrapper">
+        <canvas id="trendChart"></canvas>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ── ALERT TOAST ────────────────────────────────────── -->
+  <div class="toast" id="toast"></div>
+
+  <script src="/static/js/main.js"></script>
+</body>
+
+</html>
