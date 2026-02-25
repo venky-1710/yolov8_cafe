@@ -6,15 +6,25 @@ AI-powered person detection and counting using **YOLOv8m** + **DeepSORT** tracki
 
 ## 🚀 Quick Start
 
-### 1. Install dependencies
+### 1. Clone/Navigate to project directory
 ```bash
-cd c:\Users\lenovo\Downloads\yolov8_cafe
+cd yolov8_cafe-main
+```
+
+### 2. Create virtual environment
+```bash
+python -m venv .venv
+.venv\Scripts\activate
+```
+
+### 3. Install dependencies
+```bash
 pip install -r requirements.txt
 ```
 
 > **Note:** `yolov8m.pt` (~50 MB) is auto-downloaded by Ultralytics on first run. Requires internet access.
 
-### 2. Run the server
+### 4. Run the server
 ```bash
 python app.py
 ```
