@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Future Implementations — Cafe Occupancy Monitor</title>
+    <meta name="description"
+        content="Planned future implementations and technical roadmap for the Cafe Occupancy Monitor" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="/static/css/style.css" />
+    <link rel="stylesheet" href="/static/css/pages.css" />
+</head>
+
+<body>
+
+    <!-- NAV -->
+    <header class="header">
+        <div class="header-left">
+            <div class="logo-icon">☕</div>
+            <div>
+                <h1 class="cafe-name">Cafe Occupancy Monitor</h1>
+                <p class="cafe-subtitle">AI-Powered Real-Time Detection</p>
+            </div>
+        </div>
+        <nav class="main-nav">
+            <a href="/" class="nav-link">🏠 Dashboard</a>
+            <a href="/about" class="nav-link">ℹ️ About</a>
+            <a href="/team" class="nav-link">👥 Team</a>
+            
+            <a href="/future-scope" class="nav-link">🔭 Future Scope</a>
+            <a href="/future-implementations" class="nav-link active">🚀 Future Implementations</a>
+            <a href="/contact" class="nav-link">📬 Contact</a>
+        </nav>
+    </header>
+
+    <!-- HERO -->
+    <section class="page-hero">
+        <div class="hero-badge">Engineering Roadmap</div>
+        <h2 class="hero-title">Future<br /><span class="gradient-text">Implementations</span></h2>
+        <p class="hero-sub">A technical deep-dive into what we plan to build, how we'll build it, and the impact each
+            feature will deliver.</p>
+    </section>
+
+    <!-- CONTENT -->
+    <div class="page-container">
+
+        <!-- Feature Pillars -->
+        <div class="section-title">🏗️ Implementation Pillars</div>
+        <div class="about-grid">
+            <div class="about-card glass-card">
+                <div class="about-icon">🔁</div>
+                <h3>Real-Time Pipeline</h3>
+                <p>Redesign the video-processing pipeline with async queues and multi-threaded inference to process
+                    multiple streams without frame drops.</p>
+            </div>
+            <div class="about-card glass-card">
+                <div class="about-icon">🗄️</div>
+                <h3>Persistent Data Layer</h3>
+                <p>Introduce a time-series database (InfluxDB or TimescaleDB) to persist occupancy records and power
+                    historical analytics dashboards.</p>
+            </div>
+            <div class="about-card glass-card">
+                <div class="about-icon">🔔</div>
+                <h3>Smart Alerts</h3>
+                <p>Multi-channel notification system — email, SMS (Twilio), Slack, and webhook — triggered on
+                    configurable threshold events.</p>
+            </div>
+            <div class="about-card glass-card">
+                <div class="about-icon">🔐</div>
+                <h3>Auth &amp; Multi-Tenant</h3>
+                <p>OAuth 2.0 + JWT authentication with role-based access control so multiple cafe managers can each see
+                    only their own venues.</p>
+            </div>
+        </div>
+
+        <!-- Detailed Implementation Cards -->
+        <div class="section-title">🔬 Planned Features in Detail</div>
+        <div class="impl-list">
+
+            <!-- Feature 1 -->
+            <div class="impl-card glass-card">
+                <div class="impl-card-header">
+                    <div class="impl-icon-wrap impl-blue">🧠</div>
+                    <div class="impl-meta">
+                        <div class="impl-title">Custom Model Fine-Tuning</div>
+                        <div class="impl-tags">
+                            <span class="tag">YOLOv8</span>
+                            <span class="tag">PyTorch</span>
+                            <span class="tag">Roboflow</span>
+                        </div>
+                    </div>
+                    <span class="impl-status impl-status-planning">Planning</span>
+                </div>
+                <div class="impl-body">
+                    <div class="impl-what">
+                        <div class="impl-section-label">What</div>
+                        Fine-tune YOLOv8m on a cafe-specific dataset with varied lighting, angles, and crowd densities
+                        to achieve 90%+ mAP on real-world cafe scenes.
+                    </div>
+                    <div class="impl-how">
+                        <div class="impl-section-label">How</div>
+                        <ol class="impl-steps">
+                            <li>Collect and annotate 2,000+ cafe images via Roboflow.</li>
+                            <li>Augment with HSV shifts, mosaic, and flips.</li>
+                            <li>Fine-tune YOLOv8m for 100 epochs on a GPU cloud instance.</li>
+                            <li>Export to ONNX / TorchScript for deployment.</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Feature 2 -->
+            <div class="impl-card glass-card">
+                <div class="impl-card-header">
+                    <div class="impl-icon-wrap impl-purple">📡</div>
+                    <div class="impl-meta">
+                        <div class="impl-title">Multi-Camera Fusion</div>
+                        <div class="impl-tags">
+                            <span class="tag">OpenCV</span>
+                            <span class="tag">RTSP</span>
+                            <span class="tag">Threading</span>
+                        </div>
+                    </div>
+                    <span class="impl-status impl-status-design">In Design</span>
+                </div>
+                <div class="impl-body">
+                    <div class="impl-what">
+                        <div class="impl-section-label">What</div>
+                        Support multiple concurrent camera streams and merge detections into a single occupancy count,
+                        eliminating double-counting in overlapping zones.
+                    </div>
+                    <div class="impl-how">
+                        <div class="impl-section-label">How</div>
+                        <ol class="impl-steps">
+                            <li>Spawn one detector thread per RTSP/webcam source.</li>
+                            <li>Define overlap zones via a JSON config with camera homographies.</li>
+                            <li>Use IoU-based de-duplication across overlapping bounding boxes.</li>
+                            <li>Aggregate per-zone counts into a global occupancy total.</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Feature 3 -->
+            <div class="impl-card glass-card">
+                <div class="impl-card-header">
+                    <div class="impl-icon-wrap impl-green">📈</div>
+                    <div class="impl-meta">
+                        <div class="impl-title">Predictive Analytics Engine</div>
+                        <div class="impl-tags">
+                            <span class="tag">Prophet</span>
+                            <span class="tag">Pandas</span>
+                            <span class="tag">Chart.js</span>
+                        </div>
+                    </div>
+                    <span class="impl-status impl-status-planning">Planning</span>
+                </div>
+                <div class="impl-body">
+                    <div class="impl-what">
+                        <div class="impl-section-label">What</div>
+                        Forecast future occupancy levels by time-of-day and day-of-week using Facebook Prophet,
+                        displayed as confidence-band trend charts in the dashboard.
+                    </div>
+                    <div class="impl-how">
+                        <div class="impl-section-label">How</div>
+                        <ol class="impl-steps">
+                            <li>Persist at least 4 weeks of hourly occupancy records to InfluxDB.</li>
+                            <li>Retrain a Prophet model nightly via a background cron job.</li>
+                            <li>Expose a <code>/api/forecast?hours=24</code> endpoint with upper/lower bounds.</li>
+                            <li>Render forecast bands as a shaded overlay on the existing Chart.js trend graph.</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Feature 4 -->
+            <div class="impl-card glass-card">
+                <div class="impl-card-header">
+                    <div class="impl-icon-wrap impl-orange">🔔</div>
+                    <div class="impl-meta">
+                        <div class="impl-title">Multi-Channel Alert System</div>
+                        <div class="impl-tags">
+                            <span class="tag">Twilio</span>
+                            <span class="tag">SMTP</span>
+                            <span class="tag">Slack API</span>
+                        </div>
+                    </div>
+                    <span class="impl-status impl-status-design">In Design</span>
+                </div>
+                <div class="impl-body">
+                    <div class="impl-what">
+                        <div class="impl-section-label">What</div>
+                        Notify cafe managers via SMS, email, and Slack the moment occupancy exceeds or falls below
+                        configurable thresholds.
+                    </div>
+                    <div class="impl-how">
+                        <div class="impl-section-label">How</div>
+                        <ol class="impl-steps">
+                            <li>Define alert rules (threshold %, channels, cooldown period) in a settings UI.</li>
+                            <li>On threshold breach, push to a Redis queue to avoid blocking the detector thread.</li>
+                            <li>An async worker dispatches via Twilio (SMS), smtplib (email), and Slack Webhooks.</li>
+                            <li>Log every alert to the DB with acknowledgment tracking for the manager UI.</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Feature 5 -->
+            <div class="impl-card glass-card">
+                <div class="impl-card-header">
+                    <div class="impl-icon-wrap impl-pink">🗺️</div>
+                    <div class="impl-meta">
+                        <div class="impl-title">Heatmap Visualisation</div>
+                        <div class="impl-tags">
+                            <span class="tag">OpenCV</span>
+                            <span class="tag">NumPy</span>
+                            <span class="tag">Canvas API</span>
+                        </div>
+                    </div>
+                    <span class="impl-status impl-status-backlog">Backlog</span>
+                </div>
+                <div class="impl-body">
+                    <div class="impl-what">
+                        <div class="impl-section-label">What</div>
+                        Overlay a colour-coded density heatmap on the live video feed showing which zones of the cafe
+                        are most frequently occupied over the past hour.
+                    </div>
+                    <div class="impl-how">
+                        <div class="impl-section-label">How</div>
+                        <ol class="impl-steps">
+                            <li>Accumulate bounding box centre-points into a NumPy density array per frame.</li>
+                            <li>Apply a Gaussian blur and normalise to 0–255.</li>
+                            <li>Map through a Jet colour palette and alpha-blend onto the video frame.</li>
+                            <li>Expose a toggle in the dashboard to switch between raw and heatmap view.</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Feature 6 -->
+            <div class="impl-card glass-card">
+                <div class="impl-card-header">
+                    <div class="impl-icon-wrap impl-cyan">☁️</div>
+                    <div class="impl-meta">
+                        <div class="impl-title">Cloud-Native Deployment</div>
+                        <div class="impl-tags">
+                            <span class="tag">Docker</span>
+                            <span class="tag">Kubernetes</span>
+                            <span class="tag">AWS / GCP</span>
+                        </div>
+                    </div>
+                    <span class="impl-status impl-status-backlog">Backlog</span>
+                </div>
+                <div class="impl-body">
+                    <div class="impl-what">
+                        <div class="impl-section-label">What</div>
+                        Package the entire system as Docker containers orchestrated by Kubernetes, enabling
+                        auto-scaling, rolling updates, and zero-downtime deployments.
+                    </div>
+                    <div class="impl-how">
+                        <div class="impl-section-label">How</div>
+                        <ol class="impl-steps">
+                            <li>Write a multi-stage <code>Dockerfile</code> — builder stage installs YOLO deps, runner
+                                stage strips dev tools.</li>
+                            <li>Define Kubernetes <code>Deployment</code>, <code>Service</code>, and HPA manifests.</li>
+                            <li>Set up a CI/CD pipeline (GitHub Actions) to build, test, and push images to ECR/Artifact
+                                Registry.</li>
+                            <li>Use NGINX ingress with TLS termination for secure public access.</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+
+        </div><!-- /impl-list -->
+
+        <!-- Implementation Timeline -->
+        <div class="section-title">📅 Implementation Timeline</div>
+        <div class="timeline-card glass-card">
+            <div class="timeline-row">
+                <div class="tl-phase">Phase 1<br /><span class="tl-phase-label">Now → 3 mo</span></div>
+                <div class="tl-line">
+                    <div class="tl-dot tl-dot-active"></div>
+                </div>
+                <div class="tl-content">
+                    <div class="tl-title">Data Layer &amp; Auth</div>
+                    <div class="tl-desc">Persistent InfluxDB storage, user authentication with JWT, and a basic admin
+                        panel for camera and alert management.</div>
+                </div>
+            </div>
+            <div class="timeline-row">
+                <div class="tl-phase">Phase 2<br /><span class="tl-phase-label">3 → 6 mo</span></div>
+                <div class="tl-line">
+                    <div class="tl-dot"></div>
+                </div>
+                <div class="tl-content">
+                    <div class="tl-title">Multi-Camera &amp; Alerts</div>
+                    <div class="tl-desc">Multi-stream fusion, overlap de-duplication, and deployment of the
+                        multi-channel alert system with Twilio and Slack integrations.</div>
+                </div>
+            </div>
+            <div class="timeline-row">
+                <div class="tl-phase">Phase 3<br /><span class="tl-phase-label">6 → 12 mo</span></div>
+                <div class="tl-line">
+                    <div class="tl-dot"></div>
+                </div>
+                <div class="tl-content">
+                    <div class="tl-title">Analytics &amp; Insights</div>
+                    <div class="tl-desc">Prophet-based forecasting, heatmap overlays, dwell-time analysis, and a
+                        comprehensive historical analytics dashboard.</div>
+                </div>
+            </div>
+            <div class="timeline-row">
+                <div class="tl-phase">Phase 4<br /><span class="tl-phase-label">12+ mo</span></div>
+                <div class="tl-line">
+                    <div class="tl-dot"></div>
+                </div>
+                <div class="tl-content">
+                    <div class="tl-title">Scale &amp; Cloud-Native</div>
+                    <div class="tl-desc">Kubernetes deployment, custom model fine-tuning, POS integrations, and a public
+                        mobile application for iOS and Android.</div>
+                </div>
+            </div>
+        </div>
+
+    </div><!-- /page-container -->
+
+    <footer class="page-footer">
+        <p>© 2026 Cafe Occupancy Monitor · Built with ❤️ using YOLOv8 + Flask</p>
+    </footer>
+
+</body>
+
+</html>

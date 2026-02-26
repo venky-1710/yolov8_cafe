@@ -83,6 +83,14 @@ def team():
 def contact():
     return render_template("contact.html")
 
+@app.route("/future-scope")
+def future_scope():
+    return render_template("future_scope.html")
+
+@app.route("/future-implementations")
+def future_implementations():
+    return render_template("future_implementations.html")
+
 
 @app.route("/video_feed")
 def video_feed():

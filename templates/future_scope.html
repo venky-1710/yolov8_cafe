@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Future Scope — Cafe Occupancy Monitor</title>
+    <meta name="description" content="Future scope and limitations of the Cafe Occupancy Monitor AI system" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="/static/css/style.css" />
+    <link rel="stylesheet" href="/static/css/pages.css" />
+</head>
+
+<body>
+
+    <!-- NAV -->
+    <header class="header">
+        <div class="header-left">
+            <div class="logo-icon">☕</div>
+            <div>
+                <h1 class="cafe-name">Cafe Occupancy Monitor</h1>
+                <p class="cafe-subtitle">AI-Powered Real-Time Detection</p>
+            </div>
+        </div>
+        <nav class="main-nav">
+            <a href="/" class="nav-link">🏠 Dashboard</a>
+            <a href="/about" class="nav-link">ℹ️ About</a>
+            <a href="/team" class="nav-link">👥 Team</a>
+            
+            <a href="/future-scope" class="nav-link active">🔭 Future Scope</a>
+            <a href="/future-implementations" class="nav-link">🚀 Future Implementations</a>
+            <a href="/contact" class="nav-link">📬 Contact</a>
+        </nav>
+    </header>
+
+    <!-- HERO -->
+    <section class="page-hero">
+        <div class="hero-badge">Looking Ahead</div>
+        <h2 class="hero-title">Future Scope &amp;<br /><span class="gradient-text">Known Limitations</span></h2>
+        <p class="hero-sub">Where this project is headed — and the honest challenges we acknowledge along the way.</p>
+    </section>
+
+    <!-- CONTENT -->
+    <div class="page-container">
+
+        <!-- Vision Cards -->
+        <div class="section-title">🌐 Project Vision</div>
+        <div class="about-grid">
+            <div class="about-card glass-card">
+                <div class="about-icon">🏪</div>
+                <h3>Multi-Venue Expansion</h3>
+                <p>Scale the system to monitor multiple cafe branches simultaneously from a single unified dashboard,
+                    enabling chain-wide occupancy insights and comparisons.</p>
+            </div>
+            <div class="about-card glass-card">
+                <div class="about-icon">🤖</div>
+                <h3>Smarter AI Models</h3>
+                <p>Upgrade to larger YOLOv8 variants (medium, large) or fine-tune on cafe-specific datasets to
+                    dramatically improve detection accuracy in low-light and crowded scenes.</p>
+            </div>
+            <div class="about-card glass-card">
+                <div class="about-icon">📱</div>
+                <h3>Mobile Application</h3>
+                <p>Develop dedicated iOS and Android apps so cafe owners and managers can check live occupancy, receive
+                    alerts, and view analytics from anywhere.</p>
+            </div>
+            <div class="about-card glass-card">
+                <div class="about-icon">📊</div>
+                <h3>Predictive Analytics</h3>
+                <p>Use historical occupancy patterns to predict busy hours, generate heatmaps, and recommend optimal
+                    staffing schedules using machine learning models.</p>
+            </div>
+        </div>
+
+        <!-- Future Goals Timeline -->
+        <div class="section-title">🗺️ Roadmap</div>
+        <div class="steps-list glass-card">
+            <div class="step-item">
+                <div class="step-num">Q1</div>
+                <div class="step-body">
+                    <div class="step-title">GPU Acceleration Support</div>
+                    <div class="step-desc">Integrate CUDA and TensorRT-optimized inference paths to unlock real-time 4K
+                        processing and sub-20ms latency on edge GPU devices.</div>
+                </div>
+            </div>
+            <div class="step-item">
+                <div class="step-num">Q2</div>
+                <div class="step-body">
+                    <div class="step-title">Cloud &amp; Edge Deployment</div>
+                    <div class="step-desc">Containerise the system using Docker and deploy on AWS/GCP with auto-scaling,
+                        while also supporting NVIDIA Jetson Nano for on-premise edge inference.</div>
+                </div>
+            </div>
+            <div class="step-item">
+                <div class="step-num">Q3</div>
+                <div class="step-body">
+                    <div class="step-title">POS &amp; Reservation Integration</div>
+                    <div class="step-desc">Connect with popular POS systems (Square, Toast) and table reservation
+                        platforms (OpenTable) to correlate occupancy with sales and booking data.</div>
+                </div>
+            </div>
+            <div class="step-item">
+                <div class="step-num">Q4</div>
+                <div class="step-body">
+                    <div class="step-title">Customer Analytics</div>
+                    <div class="step-desc">Add dwell-time analysis, peak-hour heatmaps, and customer flow visualisations
+                        to give cafe operators deeper behavioral insights.</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Limitations -->
+        <div class="section-title">⚠️ Known Limitations</div>
+        <div class="limitations-grid">
+
+            <div class="limit-card glass-card">
+                <div class="limit-header">
+                    <span class="limit-icon">🌑</span>
+                    <span class="limit-title">Low-Light Performance</span>
+                    <span class="limit-badge limit-badge-high">High Impact</span>
+                </div>
+                <p class="limit-desc">YOLOv8n struggles significantly in poorly lit environments. Detection accuracy can
+                    drop below 60% in dimly lit cafes or at night with minimal artificial lighting.</p>
+                <div class="limit-mitigation">
+                    <span class="mitigation-label">Mitigation</span> Use infrared-capable cameras or increase ambient
+                    lighting around monitored zones.
+                </div>
+            </div>
+
+            <div class="limit-card glass-card">
+                <div class="limit-header">
+                    <span class="limit-icon">👤</span>
+                    <span class="limit-title">Occlusion &amp; Overlapping</span>
+                    <span class="limit-badge limit-badge-high">High Impact</span>
+                </div>
+                <p class="limit-desc">When people stand very close together or partially obscure each other, the model
+                    may under-count. This is inherent to single-camera, 2D detection.</p>
+                <div class="limit-mitigation">
+                    <span class="mitigation-label">Mitigation</span> Deploy multiple camera angles and merge detection
+                    results for improved coverage.
+                </div>
+            </div>
+
+            <div class="limit-card glass-card">
+                <div class="limit-header">
+                    <span class="limit-icon">💻</span>
+                    <span class="limit-title">CPU-Only Inference Speed</span>
+                    <span class="limit-badge limit-badge-medium">Medium Impact</span>
+                </div>
+                <p class="limit-desc">On CPU, inference is limited to ~10 FPS at 320px resolution. Processing
+                    higher-resolution video or deeper model variants will introduce noticeable lag.</p>
+                <div class="limit-mitigation">
+                    <span class="mitigation-label">Mitigation</span> Frame-skipping is already applied. A GPU upgrade or
+                    ONNX export can multiply throughput by 5–10×.
+                </div>
+            </div>
+
+            <div class="limit-card glass-card">
+                <div class="limit-header">
+                    <span class="limit-icon">🔒</span>
+                    <span class="limit-title">Privacy &amp; GDPR</span>
+                    <span class="limit-badge limit-badge-medium">Medium Impact</span>
+                </div>
+                <p class="limit-desc">Live camera streams raise privacy concerns. The system currently stores no
+                    personal data, but regulatory compliance varies by region and deployment context.</p>
+                <div class="limit-mitigation">
+                    <span class="mitigation-label">Mitigation</span> Apply on-device face blurring, provide visible
+                    camera notices, and consult local data-protection regulations.
+                </div>
+            </div>
+
+            <div class="limit-card glass-card">
+                <div class="limit-header">
+                    <span class="limit-icon">📡</span>
+                    <span class="limit-title">Single-Camera View</span>
+                    <span class="limit-badge limit-badge-low">Low Impact</span>
+                </div>
+                <p class="limit-desc">One camera covers a limited field of view. Large or irregularly shaped venues with
+                    blind spots will have inaccurate total occupancy readings.</p>
+                <div class="limit-mitigation">
+                    <span class="mitigation-label">Mitigation</span> Multi-camera fusion support is on the roadmap for
+                    Q2.
+                </div>
+            </div>
+
+            <div class="limit-card glass-card">
+                <div class="limit-header">
+                    <span class="limit-icon">🐢</span>
+                    <span class="limit-title">No Persistent Storage</span>
+                    <span class="limit-badge limit-badge-low">Low Impact</span>
+                </div>
+                <p class="limit-desc">Occupancy history is stored in-memory and lost on server restart. Long-term
+                    analytics and trend reports are not possible without a database layer.</p>
+                <div class="limit-mitigation">
+                    <span class="mitigation-label">Mitigation</span> A SQLite or InfluxDB backend integration is planned
+                    to persist time-series occupancy data.
+                </div>
+            </div>
+
+        </div>
+
+    </div><!-- /page-container -->
+
+    <footer class="page-footer">
+        <p>© 2026 Cafe Occupancy Monitor · Built with ❤️ using YOLOv8 + Flask</p>
+    </footer>
+
+</body>
+
+</html>
